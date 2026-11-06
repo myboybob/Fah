@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>American Politics Simulator</title>
+<style>
+:root{--bg:#101827;--panel:#182438;--panel2:#202f47;--line:#31435f;--text:#f3f6fb;--muted:#a9b7ca;--blue:#5ba7ff;--green:#55d6a0;--red:#ff727c;--gold:#f2c66d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#213653,#101827 55%);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+button,input,select,textarea{font:inherit}button{border:0;border-radius:11px;padding:11px 14px;background:var(--blue);color:#081321;font-weight:750;cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}button.secondary{background:#344762;color:var(--text)}button.good{background:var(--green)}button.danger{background:#ff858d;color:#2a1015}.wrap{max-width:1120px;margin:auto;padding:18px 14px 50px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}.brand{font-weight:900;letter-spacing:.08em;font-size:13px;color:#9ecaff}.brand span{color:white;font-size:22px;display:block;letter-spacing:-.03em}.date{color:var(--muted);font-weight:700}.layout{display:grid;grid-template-columns:245px 1fr;gap:15px}.side,.panel,.stat{background:linear-gradient(145deg,var(--panel),#152033);border:1px solid var(--line);border-radius:16px}.side{padding:12px;height:max-content;position:sticky;top:10px}.nav{display:grid;gap:6px}.nav button{text-align:left;background:transparent;color:var(--muted);font-weight:650}.nav button.active,.nav button:hover{background:var(--panel2);color:white}.profile-mini{padding:12px;border-bottom:1px solid var(--line);margin-bottom:9px}.avatar{width:42px;height:42px;border-radius:50%;background:#315987;display:grid;place-items:center;font-weight:900;font-size:19px;margin-bottom:8px}.profile-mini strong{display:block}.profile-mini small{color:var(--muted)}main{min-width:0}.page{display:none}.page.active{display:block}.heading{display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap;margin:2px 0 14px}.heading h1{font-size:26px;margin:0}.heading p{margin:3px 0 0;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.stat{padding:13px}.stat small{color:var(--muted);display:block}.stat strong{font-size:24px;display:block;margin-top:3px}.panel{padding:16px;margin-bottom:13px}.panel h2{font-size:17px;margin:0 0 10px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.muted{color:var(--muted)}.pill{display:inline-block;padding:4px 8px;border-radius:30px;background:#2b405d;color:#cfe4ff;font-size:12px;font-weight:750}.bar{height:9px;background:#30425c;border-radius:20px;overflow:hidden;margin:7px 0 2px}.bar i{display:block;height:100%;background:linear-gradient(90deg,#4e9cf3,#65d4b1);border-radius:20px}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.between{display:flex;justify-content:space-between;gap:10px;align-items:center}.field{display:grid;gap:5px;margin:10px 0}.field label{font-size:13px;color:var(--muted);font-weight:700}.field input,.field select,.field textarea{width:100%;background:#0f1a2a;color:white;border:1px solid var(--line);border-radius:10px;padding:11px}.field textarea{min-height:82px;resize:vertical}.choice{display:flex;gap:8px;align-items:flex-start;padding:10px;background:#1e2d43;border:1px solid #334963;border-radius:11px;margin:7px 0}.choice input{margin-top:4px}.choice label{flex:1}.cardlist{display:grid;gap:10px}.person{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px;background:#1c2a40;border:1px solid var(--line);border-radius:12px}.person p{margin:5px 0;color:var(--muted);font-size:13px}.tag{font-size:11px;color:var(--gold);font-weight:800}.feed{display:grid;gap:8px}.news{padding:10px 12px;border-left:3px solid var(--blue);background:#1c2a40;border-radius:7px}.news small{color:var(--muted)}.goodtxt{color:var(--green)}.badtxt{color:var(--red)}.hidden{display:none!important}.toast{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);background:#f4f7fb;color:#111;padding:10px 15px;border-radius:10px;font-weight:750;box-shadow:0 8px 30px #0008;z-index:10;max-width:90vw}.setup{max-width:650px;margin:8vh auto;padding:22px}.setup h1{font-size:30px;margin:0}.setup .sub{color:var(--muted);margin:4px 0 18px}.suit{display:flex;justify-content:space-between;gap:10px;padding:11px;background:#1c2a40;border-radius:10px;margin:7px 0}.footer{font-size:12px;color:var(--muted);text-align:center;margin:20px 0}.meter{font-weight:850}.smallbtn{padding:7px 10px;font-size:12px}.issue{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:9px 0;border-bottom:1px solid #2c3b52}.issue:last-child{border:0}.issue select{background:#101c2d;color:white;border:1px solid var(--line);padding:7px;border-radius:8px;max-width:150px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.side{position:static}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px}.profile-mini{display:none}.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.heading h1{font-size:23px}.wrap{padding:12px 10px 35px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand">CIVIC SIMULATION <span>AMERICAN POLITICS SIMULATOR</span></div><div class="date" id="topDate">Campaign season • 2028</div></header>
+<section id="setup" class="panel setup">
+  <span class="pill">BUILD YOUR POLITICAL CAREER</span><h1>Create your politician</h1><p class="sub">Your decisions shape your career. Polls move, colleagues remember, bills can fail, and elections are not participation trophies.</p>
+  <div class="field"><label>Politician's name</label><input id="newName" value="RJ Gruver" maxlength="32"></div>
+  <div class="grid2"><div class="field"><label>Starting office</label><select id="newOffice"><option>State Representative</option><option>State Senator</option><option>U.S. Representative</option><option>U.S. Senator</option><option>Governor</option><option>President</option><option>Mayor</option><option>County Commissioner</option></select></div><div class="field"><label>State</label><select id="newState"><option>Pennsylvania</option><option>New Jersey</option><option>New York</option><option>Ohio</option><option>Virginia</option><option>Florida</option><option>California</option><option>Texas</option></select></div></div>
+  <div class="grid2"><div class="field"><label>Political party</label><select id="newParty"><option>Independent</option><option>Democratic</option><option>Republican</option></select></div><div class="field"><label>Political style</label><select id="newStyle"><option>Pragmatic</option><option>Populist</option><option>Reformer</option><option>Ideological</option></select></div></div>
+  <div class="field"><label>Why are you running?</label><textarea id="newBio">I want to solve problems, represent my community, and build a record people can judge.</textarea></div>
+  <button class="good" style="width:100%" onclick="newGame()">Start political career →</button>
+  <p class="footer">Fictional simulation. All characters, events, salaries and political outcomes are invented for gameplay.</p>
+</section>
+<div id="game" class="layout hidden">
+<aside class="side"><div class="profile-mini"><div class="avatar" id="avatar">R</div><strong id="sideName">Politician</strong><small id="sideOffice">Office</small></div><nav class="nav" id="nav">
+<button class="active" data-page="overview">▦ Overview</button><button data-page="legislation">▤ Legislation</button><button data-page="people">♟ Colleagues</button><button data-page="polls">◉ Public opinion</button><button data-page="campaign">⚑ Campaign</button><button data-page="finances">＄ Finances</button><button data-page="wardrobe">♜ Wardrobe</button><button data-page="calendar">▣ Calendar</button>
+</nav><div class="footer">Autosaves on this device</div></aside>
+<main>
+<section class="page active" id="page-overview">
+<div class="heading"><div><h1 id="welcome">Good evening, Representative.</h1><p id="officeLine">Your next decision is waiting.</p></div><span class="pill" id="termPill">IN OFFICE</span></div>
+<div class="stats"><div class="stat"><small>Approval rating</small><strong id="approval">52%</strong><div class="bar"><i id="approvalBar" style="width:52%"></i></div></div><div class="stat"><small>Personal savings</small><strong id="personal">$0</strong></div><div class="stat"><small>Campaign funds</small><strong id="campaignFunds">$0</strong></div><div class="stat"><small>Next election</small><strong id="electionCountdown">12 mo.</strong></div></div>
+<div class="grid2"><div class="panel"><h2>Current priorities</h2><div id="priorities"></div></div><div class="panel"><h2>Latest headlines</h2><div class="feed" id="headlines"></div></div></div>
+<div class="panel"><div class="between"><h2>Take your next action</h2><span class="pill" id="actionCount">3 actions this month</span></div><p class="muted">You get three major actions each month. Spend them carefully; governing is not an infinite-click game.</p><div class="row"><button onclick="go('legislation')">Work on a bill</button><button class="secondary" onclick="go('people')">Meet colleagues</button><button class="secondary" onclick="go('campaign')">Campaign</button><button class="secondary" onclick="advanceMonth()">Advance month</button></div></div>
+</section>
+<section class="page" id="page-legislation">
+<div class="heading"><div><h1>Legislation</h1><p>Write a bill, build support, negotiate, and vote.</p></div><span class="pill" id="chamber">LEGISLATIVE FLOOR</span></div>
+<div class="grid2"><div class="panel"><h2>Draft a bill</h2>
+<div class="field"><label>Bill title</label><input id="billTitle" placeholder="e.g. Community Infrastructure Act"></div>
+<div class="field"><label>Policy area</label><select id="billIssue"><option>Economy</option><option>Education</option><option>Healthcare</option><option>Public Safety</option><option>Environment</option><option>Infrastructure</option><option>Immigration</option><option>Taxes</option></select></div>
+<div class="field"><label>What does it do?</label><textarea id="billAction" placeholder="Explain the actual policy in a sentence or two."></textarea></div>
+<div class="field"><label>Why should it pass?</label><textarea id="billReason" placeholder="Your reasoning and the problem it solves."></textarea></div>
+<div class="field"><label>Funding plan</label><select id="billFunding"><option value="funded">Fully funded</option><option value="mixed">Partially funded</option><option value="unfunded">No funding identified</option><option value="cuts">Paid for by spending cuts</option></select></div>
+<div class="field"><label>Primary beneficiaries</label><select id="billBeneficiary"><option>Working families</option><option>Small businesses</option><option>Students</option><option>Local communities</option><option>Public employees</option><option>Broad public</option></select></div>
+<button class="good" onclick="draftBill()">Introduce bill (uses 1 action)</button>
+</div><div><div class="panel"><h2>Active legislation</h2><div id="billList" class="cardlist"><p class="muted">No bills introduced yet.</p></div></div><div class="panel"><h2>How the floor works</h2><p class="muted">Colleagues weigh policy alignment, trust, funding, and whether you negotiated with them. A bill can pass without unanimous support. A failed bill can hurt your standing.</p></div></div></div>
+</section>
+<section class="page" id="page-people"><div class="heading"><div><h1>Colleagues & opponents</h1><p>Relationships matter. People remember how you treat them.</p></div></div><div id="peopleList" class="cardlist"></div></section>
+<section class="page" id="page-polls"><div class="heading"><div><h1>Public opinion</h1><p>Issue polling and your standing with voters.</p></div><button class="secondary" onclick="spendAction('release a public policy report',()=>{S.approval=clamp(S.approval+1,5,95);Object.keys(S.polls).forEach(k=>S.polls[k]=clamp(S.polls[k]+(Math.random()*4-1),5,95));log('Your policy report receives modest attention.');})">Release policy report</button></div><div class="panel"><h2>Public support by issue</h2><div id="pollList"></div></div><div class="panel"><h2>Update your platform</h2><p class="muted">Choose what you actually believe. Your platform affects votes and voter reactions.</p><div id="platform"></div><button class="good" onclick="savePlatform()">Save platform (uses 1 action)</button></div></section>
+<section class="page" id="page-campaign"><div class="heading"><div><h1>Campaign headquarters</h1><p>Build support before election day.</p></div><span class="pill" id="campaignStatus">NOT IN CAMPAIGN</span></div><div class="grid2"><div class="panel"><h2>Campaign operations</h2><p class="muted">Actions cost campaign funds and use one monthly action.</p><div class="cardlist">
+<div class="person"><div><strong>Town hall meeting</strong><p>Listen to voters and build local support.</p><span class="tag">$2,000</span></div><button onclick="campaignAction('townhall')">Host</button></div>
+<div class="person"><div><strong>Digital advertising</strong><p>Reach voters across the state.</p><span class="tag">$5,000</span></div><button onclick="campaignAction('ads')">Buy ads</button></div>
+<div class="person"><div><strong>Volunteer organization</strong><p>Recruit volunteers and improve turnout.</p><span class="tag">$3,000</span></div><button onclick="campaignAction('volunteers')">Organize</button></div>
+<div class="person"><div><strong>Community visit</strong><p>Meet residents and local leaders.</p><span class="tag">$1,000</span></div><button onclick="campaignAction('visit')">Visit</button></div>
+</div></div><div class="panel"><h2>Election outlook</h2><div id="electionOutlook"></div><hr style="border-color:var(--line);margin:15px 0"><button class="good" onclick="launchCampaign()">Launch campaign</button> <button class="danger" onclick="electionDay()">Election day</button><p class="muted">Election day is available only in the election month. A campaign launch is required.</p></div></div></section>
+<section class="page" id="page-finances"><div class="heading"><div><h1>Finances</h1><p>Personal money and campaign money are separate. Keep it that way.</p></div></div><div class="stats"><div class="stat"><small>Monthly salary</small><strong id="salary">$0</strong></div><div class="stat"><small>Personal savings</small><strong id="personal2">$0</strong></div><div class="stat"><small>Campaign savings</small><strong id="campaign2">$0</strong></div><div class="stat"><small>Monthly split</small><strong>50 / 50</strong></div></div><div class="panel"><h2>Salary history</h2><div id="salaryHistory" class="feed"></div><p class="muted">Salary is deposited once per month. Half goes to personal savings and half to campaign savings. The salary figures are fictional game values, not actual government pay.</p></div></section>
+<section class="page" id="page-wardrobe"><div class="heading"><div><h1>Wardrobe</h1><p>Public appearances have a dress code. Democracy apparently has tailoring.</p></div></div><div class="panel"><h2>Available suits</h2><div id="suits"></div></div></section>
+<section class="page" id="page-calendar"><div class="heading"><div><h1>Calendar</h1><p>One month per turn. Your salary is paid once at month-end.</p></div><button class="good" onclick="advanceMonth()">Advance one month</button></div><div class="panel"><h2>Political calendar</h2><div id="calendarView"></div></div><div class="panel"><h2>Monthly report</h2><div id="monthlyReport" class="feed"></div></div></section>
+</main></div>
+<div id="toast" class="toast hidden"></div>
+</div>
+<script>
+const $=id=>document.getElementById(id), clamp=(n,a,b)=>Math.max(a,Math.min(b,n)), money=n=>"$"+Math.round(n).toLocaleString("en-US");
+const issues=["Economy","Education","Healthcare","Public Safety","Environment","Infrastructure","Immigration","Taxes"];
+const defaults={Economy:"Pragmatic",Education:"Invest more",Healthcare:"Expand access","Public Safety":"Balanced",Environment:"Invest more",Infrastructure:"Invest more",Immigration:"Balanced",Taxes:"Pragmatic"};
+const peopleSeed=[
+{name:"Thomas Reed",party:"Republican",role:"Fiscal conservative",trust:48,loyalty:25,goal:"Reduce government spending",views:{Economy:"Cut spending",Education:"Local control",Healthcare:"Market-based","Public Safety":"Tough enforcement",Environment:"Limit regulation",Infrastructure:"Targeted spending",Immigration:"Tougher rules",Taxes:"Lower taxes"}},
+{name:"Elena Brooks",party:"Democratic",role:"Progressive coalition-builder",trust:54,loyalty:30,goal:"Expand public services",views:{Economy:"Invest more",Education:"Invest more",Healthcare:"Expand access","Public Safety":"Prevention",Environment:"Invest more",Infrastructure:"Invest more",Immigration:"Pathway reform",Taxes:"Higher on wealthy"}},
+{name:"Michael Carter",party:"Independent",role:"Practical negotiator",trust:61,loyalty:45,goal:"Deliver local projects",views:{Economy:"Pragmatic",Education:"Local control",Healthcare:"Pragmatic","Public Safety":"Balanced",Environment:"Pragmatic",Infrastructure:"Invest more",Immigration:"Balanced",Taxes:"Pragmatic"}}
+];
+let S=null;
+function newGame(){
+ const office=$("newOffice").value, salary={"State Representative":6200,"State Senator":7800,"U.S. Representative":14500,"U.S. Senator":14500,"Governor":18000,"President":33000,"Mayor":9500,"County Commissioner":5200}[office]||6000;
+ S={name:$("newName").value.trim()||"Jordan Gruver",office,state:$("newState").value,party:$("newParty").value,style:$("newStyle").value,bio:$("newBio").value,year:2028,month:1,approval:52,personal:5000,campaign:12000,salary,actions:3,actionMax:3,electionMonth:11,electionYear:2028,campaignLaunched:false,hasVoted:false,term:"In office",polls:{Economy:51,Education:58,Healthcare:54,"Public Safety":62,Environment:49,Infrastructure:57,Immigration:46,Taxes:52},platform:{...defaults},people:peopleSeed.map(p=>JSON.parse(JSON.stringify(p))),bills:[],headlines:["You take office with a narrow but workable public mandate.","Local leaders are watching your first 100 days."],salaryHistory:[],monthlyReport:[],suit:"Standard navy",suits:["Standard navy"],campaignActions:0,volunteers:0,events:0};
+ $("setup").classList.add("hidden");$("game").classList.remove("hidden");log("Your political career begins. The first month is yours to shape.");save();render();
+}
+function save(){if(S)localStorage.setItem("aps_save_v2",JSON.stringify(S))}
+function load(){try{const x=JSON.parse(localStorage.getItem("aps_save_v2"));if(x&&x.name&&x.people){S=x;$("setup").classList.add("hidden");$("game").classList.remove("hidden");render();}}catch(e){}}
+function toast(t){$("toast").textContent=t;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),2200)}
+function log(t){if(!S)return;S.headlines.unshift(t);S.headlines=S.headlines.slice(0,7);S.monthlyReport.unshift(t);S.monthlyReport=S.monthlyReport.slice(0,12)}
+function go(page){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));$("page-"+page).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));render()}
+document.querySelectorAll(".nav button").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
+function spendAction(label,fn){if(S.actions<=0){toast("No actions left this month. Advance the calendar.");return false;}S.actions--;fn();log("Action used: "+label+".");save();render();toast("Action completed.");return true}
+function draftBill(){
+ const title=$("billTitle").value.trim(),action=$("billAction").value.trim(),reason=$("billReason").value.trim();
+ if(!title||!action||!reason){toast("Complete the title, policy, and reasoning first.");return}
+ spendAction("introduce "+title,()=>{S.bills.unshift({id:Date.now(),title,issue:$("billIssue").value,action,reason,funding:$("billFunding").value,beneficiary:$("billBeneficiary").value,status:"Introduced",support:[],votes:null});S.approval=clamp(S.approval+0.5,5,95);$("billTitle").value="";$("billAction").value="";$("billReason").value="";});
+}
+function negotiate(id,pid,type){
+ const b=S.bills.find(x=>x.id===id),p=S.people.find(x=>x.name===pid);if(!b||!p)return;
+ spendAction("negotiate with "+p.name,()=>{if(type==="oversight"){p.trust=clamp(p.trust+8,0,100);b.support.push(pid);b.funding="funded";}else if(type==="local"){p.trust=clamp(p.trust+7,0,100);b.support.push(pid);b.action+=" Includes local implementation flexibility.";}else{p.trust=clamp(p.trust+4,0,100);b.support.push(pid);}b.support=[...new Set(b.support)];log(p.name+" agrees to consider "+b.title+" after negotiations.");});
+}
+function voteBill(id){
+ const b=S.bills.find(x=>x.id===id);if(!b||b.status!=="Introduced")return;
+ spendAction("hold a vote on "+b.title,()=>{let yes=0,no=0;for(const p of S.people){let score=(p.trust-50)/10+(p.views[b.issue]===S.platform[b.issue]?1.5:0)+(b.support.includes(p.name)?3:0);if(b.funding==="unfunded")score-=2;if(b.funding==="funded")score+=.6;if(b.beneficiary==="Broad public")score+=.4;if(score>=0)yes++;else no++;}
+ const playerVote=confirm("Vote YES on "+b.title+"?\n\nYES = support the bill\nCANCEL = vote NO");if(playerVote)yes++;else no++;
+ b.votes={yes,no};b.status=yes>no?"Passed":"Failed";
+ if(b.status==="Passed"){S.approval=clamp(S.approval+(b.funding==="unfunded"?1:3),5,95);S.polls[b.issue]=clamp(S.polls[b.issue]+3,5,95);log("The "+b.title+" passes "+yes+"–"+no+". Your administration claims a legislative win.");}
+ else{S.approval=clamp(S.approval-2,5,95);log("The "+b.title+" fails "+no+"–"+yes+". Opponents question your ability to build a coalition.");}
+ });}
+function meet(pid,kind){
+ const p=S.people.find(x=>x.name===pid);if(!p)return;
+ spendAction("meet with "+p.name,()=>{if(kind==="listen"){p.trust=clamp(p.trust+9,0,100);S.approval=clamp(S.approval+1,5,95);log("You listen to "+p.name+"'s priorities. Trust improves.");}else if(kind==="challenge"){p.trust=clamp(p.trust-7,0,100);S.approval=clamp(S.approval+(S.style==="Populist"?1:-1),5,95);log("You publicly challenge "+p.name+". Your base likes the fight; cooperation gets harder.");}else{p.trust=clamp(p.trust+5,0,100);S.approval=clamp(S.approval+1,5,95);log("You organize a bipartisan working group with "+p.name+".");}});
+}
+function campaignAction(type){
+ const map={townhall:[2000,2,1],ads:[5000,3,2],volunteers:[3000,1,3],visit:[1000,1,1]},[cost,boost,vol]=map[type];
+ if(S.campaign<cost){toast("Not enough campaign funds.");return}
+ spendAction("campaign operation",()=>{S.campaign-=cost;S.campaignActions+=boost;S.volunteers+=vol;S.approval=clamp(S.approval+(type==="townhall"?2:1),5,95);log(({townhall:"A town hall draws a strong local crowd.",ads:"Digital ads expand your name recognition.",volunteers:"Your volunteer network grows.",visit:"A community visit earns local coverage."})[type]);});
+}
+function launchCampaign(){if(S.campaignLaunched){toast("Your campaign is already active.");return}if(S.year<S.electionYear||(S.year===S.electionYear&&S.month<S.electionMonth)){toast("The election campaign has not officially opened yet.");return}S.campaignLaunched=true;log("You officially launch your re-election campaign.");save();render();toast("Campaign launched.");}
+function electionDay(){
+ if(S.year!==S.electionYear||S.month!==S.electionMonth){toast("Election day is in "+monthName(S.electionMonth)+" "+S.electionYear+".");return}
+ if(!S.campaignLaunched){toast("Launch your campaign before election day.");return}
+ const base=50+(S.approval-50)*.55+Math.min(8,S.campaign/10000)+Math.min(5,S.volunteers*.7)+(Math.random()*8-4);
+ const share=clamp(base,25,75),won=share>=50;S.hasVoted=true;S.term=won?"Re-elected":"Lost election";S.approval=clamp(S.approval+(won?4:-8),5,95);
+ log("ELECTION RESULT: "+(won?"VICTORY":"DEFEAT")+" — you received "+share.toFixed(1)+"% of the vote.");
+ alert("ELECTION NIGHT\n\n"+(won?"YOU WON!":"YOU LOST.")+"\n\nEstimated vote share: "+share.toFixed(1)+"%\nApproval: "+Math.round(S.approval)+"%");
+ if(won){S.electionYear+=4;S.campaignLaunched=false;S.hasVoted=false;S.campaignActions=0;S.volunteers=0;S.term="Re-elected";}else{S.term="Former officeholder";S.campaignLaunched=false;}
+ save();render();
+}
+function advanceMonth(){
+ S.month++;if(S.month>12){S.month=1;S.year++}
+ S.actions=S.actionMax;S.hasVoted=false;
+ const pay=S.salary;S.personal+=Math.floor(pay/2);S.campaign+=pay-Math.floor(pay/2);S.salaryHistory.unshift({date:monthName(S.month)+" "+S.year,pay});S.salaryHistory=S.salaryHistory.slice(0,12);
+ let event=Math.random();
+ if(event<.2){S.approval=clamp(S.approval-2,5,95);log("A difficult news cycle puts your office under pressure. Approval slips.");}
+ else if(event<.4){S.approval=clamp(S.approval+2,5,95);log("A local project receives positive coverage. Approval rises.");}
+ else{log("A new month begins. Your office has three fresh actions.");}
+ if(S.month===S.electionMonth&&S.year===S.electionYear)log("Election month has arrived. Launch your campaign before election day.");
+ save();render();toast("Advanced to "+monthName(S.month)+" "+S.year+". Salary deposited.");
+}
+function savePlatform(){spendAction("update your platform",()=>{issues.forEach(k=>{S.platform[k]=$("plat_"+k).value});S.approval=clamp(S.approval+1,5,95);log("You publish an updated policy platform.");});}
+function buySuit(name,cost){if(S.suits.includes(name)){S.suit=name;toast("Equipped "+name+".");render();save();return}if(S.personal<cost){toast("Not enough personal savings.");return}S.personal-=cost;S.suits.push(name);S.suit=name;log("You purchased the "+name+" suit.");save();render();}
+function monthName(m){return["","January","February","March","April","May","June","July","August","September","October","November","December"][m]}
+function render(){
+ if(!S)return;
+ const date=monthName(S.month)+" "+S.year;$("topDate").textContent=date+" • "+S.actions+" actions remaining";$("avatar").textContent=S.name.slice(0,1).toUpperCase();$("sideName").textContent=S.name;$("sideOffice").textContent=S.office+" • "+S.party;
+ $("welcome").textContent="Welcome, "+S.office+"."; $("officeLine").textContent=S.state+" • "+S.style+" • "+S.party;$("termPill").textContent=S.term.toUpperCase();
+ $("approval").textContent=Math.round(S.approval)+"%";$("approvalBar").style.width=S.approval+"%";$("personal").textContent=money(S.personal);$("campaignFunds").textContent=money(S.campaign);$("personal2").textContent=money(S.personal);$("campaign2").textContent=money(S.campaign);$("salary").textContent=money(S.salary);$("electionCountdown").textContent=S.year===S.electionYear?Math.max(0,(S.electionMonth-S.month+12)%12)+" mo.":S.electionYear-S.year+" yr.";
+ $("actionCount").textContent=S.actions+" actions this month";
+ $("priorities").innerHTML=issues.slice(0,4).map(k=>`<div class="between"><strong>${k}</strong><span class="muted">${S.platform[k]}</span></div>`).join("<hr style='border-color:var(--line)'>");
+ $("headlines").innerHTML=S.headlines.map((x,i)=>`<div class="news">${x}<br><small>${i===0?"Latest update":"Office briefing"}</small></div>`).join("");
+ $("billList").innerHTML=S.bills.length?S.bills.map(b=>`<div class="person"><div><strong>${esc(b.title)}</strong><p>${esc(b.issue)} • ${esc(b.status)} • ${esc(b.funding)}</p><p>${esc(b.action)}</p>${b.votes?`<span class="tag">Vote: ${b.votes.yes} YES / ${b.votes.no} NO</span>`:""}</div><div class="row">${b.status==="Introduced"?`<button class="smallbtn secondary" onclick="billNegotiation(${b.id})">Negotiate</button><button class="smallbtn good" onclick="voteBill(${b.id})">Vote</button>`:"<span class='pill'>"+b.status+"</span>"}</div></div>`).join(""):"<p class='muted'>No bills introduced yet. Draft one to begin.</p>";
+ $("peopleList").innerHTML=S.people.map(p=>`<div class="panel"><div class="between"><div><h2>${p.name}</h2><span class="pill">${p.party}</span> <span class="tag">${p.role}</span></div><strong>${p.trust}% trust</strong></div><p class="muted">Goal: ${p.goal}</p><div class="bar"><i style="width:${p.trust}%"></i></div><div class="row"><button class="smallbtn" onclick="meet('${p.name}','listen')">Listen</button><button class="smallbtn secondary" onclick="meet('${p.name}','group')">Working group</button><button class="smallbtn danger" onclick="meet('${p.name}','challenge')">Challenge</button></div></div>`).join("");
+ $("pollList").innerHTML=issues.map(k=>`<div style="margin:12px 0"><div class="between"><strong>${k}</strong><span>${Math.round(S.polls[k])}% support</span></div><div class="bar"><i style="width:${S.polls[k]}%"></i></div></div>`).join("");
+ $("platform").innerHTML=issues.map(k=>`<div class="issue"><strong>${k}</strong><select id="plat_${k}">${["Pragmatic","Invest more","Cut spending","Expand access","Balanced","Local control","Tough enforcement","Prevention","Limit regulation","Market-based","Lower taxes","Higher on wealthy","Pathway reform","Tougher rules","Targeted spending"].map(x=>`<option ${S.platform[k]===x?"selected":""}>${x}</option>`).join("")}</select></div>`).join("");
+ $("campaignStatus").textContent=S.campaignLaunched?"CAMPAIGN ACTIVE":"NOT IN CAMPAIGN";$("electionOutlook").innerHTML=`<p>Approval rating: <strong>${Math.round(S.approval)}%</strong></p><p>Campaign spending power: <strong>${money(S.campaign)}</strong></p><p>Volunteer strength: <strong>${S.volunteers}</strong></p><p>Campaign activity score: <strong>${S.campaignActions}</strong></p><p>Election: <strong>${monthName(S.electionMonth)} ${S.electionYear}</strong></p>`;
+ $("salaryHistory").innerHTML=S.salaryHistory.length?S.salaryHistory.map(x=>`<div class="news">${x.date}: <strong>${money(x.pay)}</strong> deposited, split equally between personal and campaign savings.</div>`).join(""):"<p class='muted'>No salary payments yet.</p>";
+ const suits=[["Standard navy",0],["Charcoal",700],["Black formal",900],["Pinstripe",1400],["Navy executive",1800]];
+ $("suits").innerHTML=suits.map(([n,c])=>`<div class="suit"><div><strong>${n}</strong><div class="muted">${c?money(c):"Included"} ${S.suit===n?" • EQUIPPED":""}</div></div><button class="smallbtn ${S.suit===n?"secondary":""}" onclick="buySuit('${n}',${c})">${S.suits.includes(n)?(S.suit===n?"Equipped":"Equip"):"Buy"}</button></div>`).join("");
+ $("calendarView").innerHTML=`<h2>${date}</h2><p>${S.actions} of ${S.actionMax} monthly actions remaining.</p><p>Next election: ${monthName(S.electionMonth)} ${S.electionYear}</p><p>Salary deposit: ${money(S.salary)} at the start of each new month, split 50/50.</p>`;
+ $("monthlyReport").innerHTML=S.monthlyReport.map(x=>`<div class="news">${x}</div>`).join("")||"<p class='muted'>No reports yet.</p>";
+ $("chamber").textContent=({President:"EXECUTIVE OFFICE",Governor:"EXECUTIVE OFFICE",Mayor:"CITY EXECUTIVE", "County Commissioner":"COUNTY GOVERNMENT"})[S.office]||"LEGISLATIVE FLOOR";
+}
+function billNegotiation(id){
+ const p=S.people.map(x=>x.name+" ("+x.trust+" trust)").join("\n");
+ const chosen=prompt("Choose a colleague to negotiate with:\n"+p+"\n\nEnter exact name:");
+ if(!chosen||!S.people.some(x=>x.name.toLowerCase()===chosen.toLowerCase())){toast("No matching colleague selected.");return}
+ const type=prompt("Negotiation proposal:\n1 = Add oversight and funding\n2 = Give local implementation flexibility\n3 = General compromise\n\nEnter 1, 2, or 3:");
+ negotiate(id,S.people.find(x=>x.name.toLowerCase()===chosen.toLowerCase()).name,({1:"oversight",2:"local",3:"general"})[type]||"general");
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+load();
+</script>
+</body>
+</html>
